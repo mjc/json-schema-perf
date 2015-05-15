@@ -29,16 +29,30 @@ schema = {
   }
 }
 
-20_000.times do
+schema_file = 'schema.json'
+
+File.open('schema.json','w') do |f|
+  f << JSON.dump(schema)
+end unless File.exist?(schema_file)
+
+40_000.times do
+  JSON::Validator.validate(schema_file, data)
+end
+
+40_000.times do
   JSON::Validator.validate(schema, data)
 end
 
 Benchmark.ips do |x|
-  x.config time: 5, warmup: 5
-  # x.report('json-schema from file') do
-  #   JSON::Validator.validate(schema_path, data)
-  # end
+  x.config time: 30, warmup: 90
+
+  x.report('json-schema from file') do
+    JSON::Validator.validate(schema_file, data)
+  end
+
   x.report('json-schema from hash') do
     JSON::Validator.validate(schema, data)
   end
+
+  x.compare!
 end
