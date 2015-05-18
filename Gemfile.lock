@@ -5,6 +5,7 @@ GEM
     benchmark-ips (2.2.0)
     json-schema (2.5.1)
       addressable (~> 2.3.7)
+    ruby-progressbar (1.7.5)
 
 PLATFORMS
   java
@@ -13,3 +14,4 @@ PLATFORMS
 DEPENDENCIES
   benchmark-ips
   json-schema
+  ruby-progressbar

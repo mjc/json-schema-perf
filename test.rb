@@ -30,17 +30,29 @@ schema = {
 }
 
 schema_file = 'schema.json'
-
 File.open('schema.json','w') do |f|
   f << JSON.dump(schema)
 end unless File.exist?(schema_file)
 
-40_000.times do
-  JSON::Validator.validate(schema_file, data)
+def warmup(&block)
+  return unless RUBY_PLATFORM == 'jruby'
+  count = 1_000_000
+  slice_size = count / 200
+  p = ProgressBar.create(format: '(%E) %w (%R rate)', total: count)
+  count.times.each_slice(slice_size) do |slice|
+    slice.each(&block)
+    p.progress += slice.count
+  end
+  p.finish
 end
 
-40_000.times do
+
+warmup do
   JSON::Validator.validate(schema, data)
+end
+
+warmup do
+  JSON::Validator.validate(schema_file, data)
 end
 
 Benchmark.ips do |x|
