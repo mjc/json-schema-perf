@@ -36,8 +36,8 @@ end unless File.exist?(schema_file)
 
 def warmup(&block)
   return unless RUBY_ENGINE == 'jruby'
-  count = 1_000_000
-  slice_size = count / 200
+  count = 500_000
+  slice_size = 5_000
   p = ProgressBar.create(format: '(%E) %w (%R rate)', total: count)
   count.times.each_slice(slice_size) do |slice|
     slice.each(&block)
