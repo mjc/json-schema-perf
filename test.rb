@@ -35,7 +35,7 @@ File.open('schema.json','w') do |f|
 end unless File.exist?(schema_file)
 
 def warmup(&block)
-  return unless RUBY_PLATFORM == 'jruby'
+  return unless RUBY_ENGINE == 'jruby'
   count = 1_000_000
   slice_size = count / 200
   p = ProgressBar.create(format: '(%E) %w (%R rate)', total: count)
