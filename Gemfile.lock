@@ -1,10 +1,16 @@
+GIT
+  remote: git://github.com/mjc/json-schema.git
+  revision: b25cd15d24d1eba2f97d82f43b55935bafede266
+  branch: cache-normalized-uri
+  specs:
+    json-schema (2.5.1)
+      addressable (~> 2.3.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.8)
     benchmark-ips (2.2.0)
-    json-schema (2.5.1)
-      addressable (~> 2.3.7)
     ruby-progressbar (1.7.5)
 
 PLATFORMS
@@ -13,5 +19,5 @@ PLATFORMS
 
 DEPENDENCIES
   benchmark-ips
-  json-schema
+  json-schema!
   ruby-progressbar
