@@ -10,7 +10,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.8)
-    benchmark-ips (2.2.0)
+    benchmark-ips (2.7.2)
     ruby-progressbar (1.7.5)
 
 PLATFORMS
